@@ -6,7 +6,7 @@ from users.models import User
 from .models import Quiz, Question, Answer
 
 def dashboard(request):
-    return render(request, 'quizes/dashboard.html')
+    return render(request, 'quizzes/dashboard.html')
 
 @login_required
 def quiz_info(request, quiz_id):
@@ -15,7 +15,7 @@ def quiz_info(request, quiz_id):
         'this_user': User.objects.get(id=user.id),
         'this_quiz': Quiz.objects.get(id=quiz_id)
     }
-    return render(request, 'Quiz_info.html', context)
+    return render(request, 'quizzes/Quiz_info.html', context)
 
 def create_score(request, quiz_id):
     if request.method != "POST":

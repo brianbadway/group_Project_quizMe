@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
 
-    'quizes',
+    'quizzes',
     'users',
 
     'django.contrib.contenttypes',
