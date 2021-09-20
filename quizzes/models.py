@@ -22,3 +22,13 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, related_name="has_answers", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class Result(models.Model):
+    percent_score = models.IntegerField()
+    correct_answers = models.IntegerField()
+    wrong_answers = models.IntegerField()
+    total_questions = models.IntegerField()
+    quiz = models.ForeignKey(Quiz, related_name="results_saved", on_delete = models.CASCADE)
+    user = models.ForeignKey(User, related_name="has_results", on_delete = models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

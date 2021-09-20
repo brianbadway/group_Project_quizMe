@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.index),# home page 
     path('quizzes/dashboard', views.dashboard), # dashboard
     path('<int:quiz_id>/', views.quiz_info, name='quiz_info'),
-    path('create_score/<int:quiz_id>', views.create_score),
-    path('result', views.result),
+    path('<int:quiz_id>/create_score/', views.create_score),
+    path('<int:quiz_id>/result', views.result),
+    path('<int:quiz_id>/save_result', views.save_result),
 ]

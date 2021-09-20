@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method='post' action='create_score/{{tfhis_quiz.id}}'>
+    <form method='post' action='create_score/'>
         {% csrf_token %}
         <p>{{this_quiz.title}}</p>
         {% for question in this_quiz.has_questions.all%}
@@ -11,7 +11,7 @@
             {% for has_answer in question.has_answers.all %}
             <div>
                 <div>
-                    <input type="radio" name="question_{{question.id}}" value="{{has_answer.correct}}">
+                    <input type="radio" name="question_{{question.id}}_{{question.prompt}}" value="{{has_answer.correct}}">
                     <label for="gridRadios1">
                         {{has_answer.text}}
                     </label>
