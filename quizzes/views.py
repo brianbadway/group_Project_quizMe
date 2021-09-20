@@ -5,8 +5,16 @@ from django.shortcuts import render, redirect, HttpResponse
 from users.models import User
 from .models import Quiz, Question, Answer
 
+def index(request):
+    return render(request, 'quizzes/quiz_index.html')
+
 def dashboard(request):
-    return render(request, 'quizzes/dashboard.html')
+    # if 'user_id' not in request.session:
+    #     return redirect('/users/register')       
+    context = {
+        'all_quizzes': Quiz.objects.all(),
+    }
+    return render(request, 'quizzes/dashboard.html', context)
 
 @login_required
 def quiz_info(request, quiz_id):
@@ -47,3 +55,9 @@ def result(request):
     # incomplete
     return HttpResponse('results go here')
 # Create your views here.
+
+def randomizer(request):
+    context = {
+        "blogs": Blog.objects.order_by('?')[0],
+    }
+    return render(request, 'randomizer.html', context)
