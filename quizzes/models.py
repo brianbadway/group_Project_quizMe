@@ -15,13 +15,15 @@ class Question(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
 class Answer(models.Model):
     text = models.CharField(max_length=255, null=True)
     correct = models.BooleanField(default=False)
     # created_by = models.ForeignKey(User, related_name="questions_created", on_delete=models.CASCADE)
     question = models.ForeignKey(Question, related_name="has_answers", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True
+    )
 
 class Result(models.Model):
     percent_score = models.IntegerField()

@@ -1,3 +1,4 @@
 db.sqlite3
 Pipfile
 *.pyc
+notes.txt

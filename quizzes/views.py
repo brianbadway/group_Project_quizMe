@@ -5,8 +5,10 @@ from django.shortcuts import render, redirect, HttpResponse
 from users.models import User
 from .models import Quiz, Question, Answer, Result
 
+
 def index(request):
     return render(request, 'quizzes/quiz_index.html')
+
 
 def dashboard(request):
     # if 'user_id' not in request.session:
