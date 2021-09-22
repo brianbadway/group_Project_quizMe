@@ -9,10 +9,8 @@ from .models import Quiz, Question, Answer, Result
 def index(request):
     return render(request, 'quizzes/quiz_index.html')
 
-
-def dashboard(request):
-    # if 'user_id' not in request.session:
-    #     return redirect('/users/register')       
+@login_required
+def dashboard(request):     
     context = {
         'all_quizzes': Quiz.objects.all(),
     }
