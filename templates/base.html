@@ -14,10 +14,13 @@
 
     <body>
         <header>
-            {% if messages %}
+            {% if messages or form.errors %}
                 <ul class="message-list">
                     {% for message in messages %}
-                        <li class="message {{ message.tag }}">{{ message }}</li>
+                        <li class="message {{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                    {% for field, error in form.errors.items %}
+                        <li class="message error">{{ error }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
