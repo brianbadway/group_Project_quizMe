@@ -190,3 +190,38 @@ def create_answer(request, quiz_id, question_id):
         return redirect(f'/quizzes/{quiz_id}/{question_id}/new_answer')
     else:
         return redirect('/quizzes/dashboard')
+
+def edit_quiz(request, quiz_id):
+    context = {
+        'this_quiz': Quiz.objects.get(id=quiz_id)
+    }
+    return render(request, 'quizzes/edit_quiz.html', context)
+
+def delete_quiz(request, quiz_id):
+    quiz = Quiz.objects.get(id=quiz_id)
+    quiz.delete()
+    return redirect('/quizzes/dashboard')
+
+def update_quiz(request, quiz_id):
+    # validator?
+    quiz = Quiz.objects.get(id=quiz_id)
+    quiz.title = request.POST['title']
+    quiz.description = request.POST['description']
+    quiz.save()
+    return redirect('/quizzes/dashboard')
+
+def edit_question(request, quiz_id, question_id):
+    context = {
+        'this_question': Question.objects.get(id=question_id)
+    }
+    return render(request, 'quizzes/edit_question.html', context)
+
+def delete_question(request, quiz_id, question_id):
+    question = Question.objects.get(id=question_id)
+    question.delete()
+    return redirect(f'/{quiz_id}/edit_quiz')
+
+def delete_answer(request, quiz_id, question_id, answer_id):
+    answer = Answer.objects.get(id=answer_id)
+    answer.delete()
+    return redirect(f'/{quiz_id}/edit_question/{question_id}')
