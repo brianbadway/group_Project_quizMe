@@ -219,9 +219,15 @@ def edit_question(request, quiz_id, question_id):
 def delete_question(request, quiz_id, question_id):
     question = Question.objects.get(id=question_id)
     question.delete()
-    return redirect(f'/{quiz_id}/edit_quiz')
+    return redirect(f'/quizzes/{quiz_id}/edit_quiz')
+
+def update_question(request, quiz_id, question_id):
+    question = Question.objects.get(id=question_id)
+    question.prompt = request.POST['prompt']
+    question.save()
+    return redirect(f'/quizzes/{quiz_id}/edit_question/{question_id}')
 
 def delete_answer(request, quiz_id, question_id, answer_id):
     answer = Answer.objects.get(id=answer_id)
     answer.delete()
-    return redirect(f'/{quiz_id}/edit_question/{question_id}')
+    return redirect(f'/quizzes/{quiz_id}/edit_question/{question_id}')

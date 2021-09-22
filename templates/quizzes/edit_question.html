@@ -10,7 +10,7 @@
     <div>
         <div>
             <h1>Edit your question!</h1>
-            <form  method="POST" action="update_question">
+            <form  method="POST" action="{{this_question.id}}/update_question">
                 {% csrf_token %}
                 <label for="prompt"> Question </label> <input name="prompt" type="text">
                 <button class="btn btn-success" type="submit">Update Question</button>
@@ -20,7 +20,7 @@
             <h3>Answers to this Question: {{this_question.prompt}}</h3>
             {% for answer in this_question.has_answers.all%}
                 <p>{{answer.text}}</p>
-                <a class="btn btn-outline-danger" href="delete_answer/{{answer.id}}" method="POST">Delete Answer</a>
+                <a class="btn btn-outline-danger" href="{{this_question.id}}/delete_answer/{{answer.id}}" method="POST">Delete Answer</a>
             {% endfor %}
         </div>
         <div>
